@@ -1,14 +1,10 @@
 #!/usr/bin/python3
 
 import requests
-
 import getpass
-
 from bs4 import BeautifulSoup as bs
 
-
 #Try to Read EMAIL and PASSWORD 
-
 try:
     file = open('login_info.data', 'r')
     login_info_data= file.readlines()
@@ -16,7 +12,6 @@ try:
     email = login_info_data[0]
     password = login_info_data[1]
     file.close()
-
 
 except(FileNotFoundError,IndexError):
     email =  input("email: ")
@@ -46,7 +41,6 @@ login_data = {
 
 
 with requests.Session() as s:
-
     # Get Vocab answers function
     def GetVocab():
         # get vocab's source code
@@ -56,7 +50,7 @@ with requests.Session() as s:
         # get script
         vocab_script = vocab_page_content.find('p', {'class': 'mb-0'})
 
-        # ge answer keys
+        # get answer keys
         vocab_answer = vocab_page_content.find('script', {'type': "text/javascript"})
         
         # print script and answers
@@ -83,6 +77,7 @@ with requests.Session() as s:
         list_answer_end.reverse()
         list_answer_string = []
         str_answer = ""
+        
         for i in list_answer_end:
             for h in range(i,70,-1): 
                 if(comp_answers[h] == "\"" and i - h > 3):
@@ -209,13 +204,9 @@ with requests.Session() as s:
         file_delete.close()
         controlPoint0 = 0
         
-
-
-
-
+        
     # MAIN PART
     while(controlPoint0 == 1):
-
         try:
             # get vocab link
             target_HW = input("lingua homework link: ")
